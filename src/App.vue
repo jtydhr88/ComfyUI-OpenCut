@@ -1,8 +1,7 @@
 <template>
   <div
     ref="viewerContentRef"
-    class="flex w-full"
-    :class="[maximized ? 'h-full' : 'h-[70vh]']"
+    class="flex w-full h-full"
   >
     <div ref="mainContentRef" class="flex-1 relative">
       <iframe
@@ -14,14 +13,31 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 const viewerContentRef = ref<HTMLDivElement>()
 const mainContentRef = ref<HTMLDivElement>()
 const maximized = ref(false)
 const mutationObserver = ref<MutationObserver | null>(null)
 
+const updateParentClass = () => {
+  if (viewerContentRef.value?.parentElement) {
+    const parentEl = viewerContentRef.value.parentElement
+    if (!maximized.value) {
+      parentEl.classList.add('h-full')
+    } else {
+      parentEl.classList.remove('h-full')
+    }
+  }
+}
+
+watch(maximized, () => {
+  updateParentClass()
+})
+
 onMounted(async () => {
   if (viewerContentRef.value) {
+    updateParentClass()
+
     mutationObserver.value = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (
@@ -43,6 +59,10 @@ onMounted(async () => {
 })
 
 onBeforeUnmount(() => {
+  if (viewerContentRef.value?.parentElement) {
+    viewerContentRef.value.parentElement.classList.remove('h-full')
+  }
+
   if (mutationObserver.value) {
     mutationObserver.value.disconnect()
     mutationObserver.value = null

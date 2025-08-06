@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+Disallow: /_next/
+Disallow: /projects/
+Disallow: /editor/
+
+Sitemap: https://opencut.app/sitemap.xml

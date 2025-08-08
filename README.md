@@ -13,5 +13,5 @@ This is a ComfyUI plugin that integrated OpenCut into ComfyUI, originally develo
 ### Method 1
 Access to http://127.0.0.1:8188/opencut/ directly in your browser, or
 ### Method 2: 
-(requires ComfyUI_frontend greater than 1.25.0) 
+(requires ComfyUI updated to latest - 2025/08/08 which frontend greater than 1.24.4)
 open from the ComfyUI, click on the "OpenCut" button

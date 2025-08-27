@@ -1,0 +1,15 @@
+[project]
+name = "ComfyUI-OpenCut"
+description = "ComfyUI-OpenCut Frontend Vue Basic is a ComfyUI plugin that integrated OpenCut into ComfyUI"
+version = "0.1.2"
+license = {file = "LICENSE"}
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/jtydhr88/ComfyUI-OpenCut"
+#  Used by Comfy Registry https://comfyregistry.org
+[tool.comfy]
+PublisherId = "jtydhr88"
+DisplayName = "ComfyUI OpenCut"
+Icon = ""
+includes = ['js']
